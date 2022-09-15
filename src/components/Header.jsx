@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
+
 
 export const Header = () => {
   return (
-    <Button variant='secondary'>Hello</Button>
+    <h1 className='mt-4 p5 bg-primary text-white rounded'>Header</h1>
   )
 }
