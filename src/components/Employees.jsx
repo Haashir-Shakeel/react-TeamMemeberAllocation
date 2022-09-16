@@ -90,11 +90,20 @@ export const Employees = () => {
       teamName: "TeamD"
     }])
 
+    const handleEmpoyeeCardClick = (event) => {
+      console.log('inside emplyee card click')
+      const transformedEmployees = employees.map((employee) => employee.id === parseInt(event.currentTarget.id)
+        ?(employee.teamName === team)?{...employee, teamName:''}:{...employee,teamName:team}
+        :employee)
+        
+        SetEmployees(transformedEmployees)
+    }
+
   return (
     <main className='container'>
       <div className='row justify-content-center mb-3 mt-3'>
         <div className='col-6'>
-          <select className='form-select form-select-lg' value={team} onChange={(e)=>setTeam(e.target.value)}>
+          <select className='form-select form-select-lg' value={team}  onChange={(e)=>setTeam(e.target.value)}>
             <option value="TeamA">TeamA</option>
             <option value="TeamB">TeamB</option>
             <option value="TeamC">TeamC</option>
@@ -107,20 +116,20 @@ export const Employees = () => {
           <div className='card-collection'>
 
             {
-              employees.map((item)=>{
+              employees.map((employee)=>{
                 return (
-                  <div key={item.id} className='card m-2' style={{cursor:"pointer"}} >
+                  <div id={employee.id} key={employee.id} className={(employee.teamName === team ? 'card m-2 standout': 'card m-2')} style={{cursor:"pointer"}} onClick={handleEmpoyeeCardClick} >
                 {
-                  item.gender === 'male' ?
+                  employee.gender === 'male' ?
                 <img src={maleProfile}/>
                 : <img src={femaleProfile}/>
                 }
                 <div className='card-body'>
                   <h5 className='card-title'>
-                    Full Name: {item.fullName} 
+                    Full Name: {employee.fullName} 
                   </h5>
                   <p className='card-text'>
-                    Designation: {item.designation}
+                    Designation: {employee.designation}
                   </p>
                 </div>
                 </div>
