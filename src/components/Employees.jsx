@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import femaleProfile from '../images/femaleProfile.jpg'
 import maleProfile from '../images/maleProfile.jpg'
-export const Employees = ({employees,team,handleEmpoyeeCardClick,handleTeamSelectChange}) => {
+export const Employees = ({employees,selectedTeam,handleEmpoyeeCardClick,handleTeamSelectChange}) => {
 
 
   return (
     <main className='container'>
       <div className='row justify-content-center mb-3 mt-3'>
         <div className='col-6'>
-          <select className='form-select form-select-lg' value={team}  onChange={handleTeamSelectChange}>
+          <select className='form-select form-select-lg' value={selectedTeam}  onChange={handleTeamSelectChange}>
             <option value="TeamA">TeamA</option>
             <option value="TeamB">TeamB</option>
             <option value="TeamC">TeamC</option>
@@ -23,7 +23,7 @@ export const Employees = ({employees,team,handleEmpoyeeCardClick,handleTeamSelec
             {
               employees.map((employee)=>{
                 return (
-                  <div id={employee.id} key={employee.id} className={(employee.teamName === team ? 'card m-2 standout': 'card m-2')} style={{cursor:"pointer"}} onClick={handleEmpoyeeCardClick} >
+                  <div id={employee.id} key={employee.id} className={(employee.teamName === selectedTeam ? 'card m-2 standout': 'card m-2')} style={{cursor:"pointer"}} onClick={handleEmpoyeeCardClick} >
                 {
                   employee.gender === 'male' ?
                 <img src={maleProfile}/>

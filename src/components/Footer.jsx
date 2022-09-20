@@ -1,7 +1,15 @@
 import React from 'react'
 
+
 export const Footer = () => {
+  var today = new Date()
   return (
-    <div>Footer</div>
+    <footer>
+      <div className='row justify-content-center mt-3 mb-4'>
+        <div className='col-8'>
+          <h5>Team Member Allocation App - {today.getFullYear()}</h5>
+        </div>
+      </div>
+    </footer>
   )
 }

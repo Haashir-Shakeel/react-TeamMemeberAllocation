@@ -4,13 +4,13 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Content } from './components/Content';
 import Employees from './components/Employees';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
-  const [team, setTeam] = useState('TeamB')
+  const [selectedTeam, setSelectedTeam] = useState(JSON.parse(localStorage.getItem('selectedTeam')) || 'TeamB')
 
-  const [employees, SetEmployees]=useState([{
+  const [employees, SetEmployees]=useState(JSON.parse(localStorage.getItem('employeeList')) || [{
     id: 1,
     fullName: "Bob Jones",
     designation: "JavaScript Developer",
@@ -95,24 +95,35 @@ function App() {
     teamName: "TeamD"
   }])
 
+  useEffect(()=>{
+    localStorage.setItem('employeeList', JSON.stringify(employees))
+  },[employees])
+
+  useEffect(()=>{
+    localStorage.setItem('selectedTeam', JSON.stringify(selectedTeam))
+  },[selectedTeam])
+
   const handleEmpoyeeCardClick = (event) => {
     console.log('inside emplyee card click')
     const transformedEmployees = employees.map((employee) => employee.id === parseInt(event.currentTarget.id)
-      ?(employee.teamName === team)?{...employee, teamName:''}:{...employee,teamName:team}
+      ?(employee.teamName === selectedTeam)?{...employee, teamName:''}:{...employee,teamName:selectedTeam}
       :employee)
       
       SetEmployees(transformedEmployees)
   }
 
   const handleTeamSelectChange = (event) => {
-    setTeam(event.target.value)
+    setSelectedTeam(event.target.value)
   }
   return (
       <div>
-        <Header/>
+        <Header 
+        selectedTeam = {selectedTeam} 
+        teamMemberCount = {employees.filter((employee)=> employee.teamName === selectedTeam).length}
+        />
         <Employees 
         employees={employees}
-        team={team}
+        selectedTeam={selectedTeam}
         handleEmpoyeeCardClick={handleEmpoyeeCardClick}
         handleTeamSelectChange={handleTeamSelectChange}
         />
