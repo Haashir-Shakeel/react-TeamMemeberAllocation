@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { GroupedTeamMembers } from './components/GroupedTeamMembers';
 import Nav from './components/Nav';
+import { NotFound } from './components/NotFound';
+
 function App() {
 
   const [selectedTeam, setSelectedTeam] = useState(JSON.parse(localStorage.getItem('selectedTeam')) || 'TeamB')
@@ -131,7 +133,13 @@ function App() {
           handleEmpoyeeCardClick={handleEmpoyeeCardClick}
           handleTeamSelectChange={handleTeamSelectChange}/>}>
           </Route>
-          <Route path='/GroupedTeamMembers' element = {<GroupedTeamMembers/>}></Route>
+          <Route path='/GroupedTeamMembers' element = {
+          <GroupedTeamMembers 
+          employees={employees}
+          selectedTeam={selectedTeam}
+          setSelectedTeam={setSelectedTeam}/>
+          }></Route>
+          <Route path='*' element = {<NotFound/>} ></Route>
         </Routes>
         <Footer/>
       </Router>

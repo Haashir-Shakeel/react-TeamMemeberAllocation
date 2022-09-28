@@ -1,13 +1,13 @@
 import React from 'react'
 
 
-export const Header = ({selectedTeam, teamMemberCount}) => {
+export const NotFound = () => {
   return (
     <header className='container'>
     <div className='row justify-content-center mt-3 mb-4'>
       <div className='col-8'>
-        <h1>Team Member Allocation</h1>
-        <h3> {selectedTeam} has {teamMemberCount} {teamMemberCount===1?"member":"members"}</h3>
+        <h1 className='text-danger'>404 - page not found</h1>
+        
       </div>
     </div>
     </header>
