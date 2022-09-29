@@ -1,11 +1,14 @@
 import React from 'react'
+import { useContext } from 'react'
+import { DataContext } from '../Context/DataContext'
 import TeamMemberCard from './TeamMemberCard'
 
-const TeamMembers = ({employees, selectedTeam,handleEmpoyeeCardClick}) => {
+const TeamMembers = () => {
+  const {employees} = useContext(DataContext)
   return(
     
         employees.map((employee) => {
-            return <TeamMemberCard employee={employee} handleEmpoyeeCardClick={handleEmpoyeeCardClick} selectedTeam={selectedTeam}/>
+            return <TeamMemberCard key={employee.id} employee={employee}/>
         })
     
   ) 
@@ -13,5 +16,3 @@ const TeamMembers = ({employees, selectedTeam,handleEmpoyeeCardClick}) => {
 }
 
 export default TeamMembers
-
-//<TeamMemberCard handleEmpoyeeCardClick={handleEmpoyeeCardClick} selectedTeam={selectedTeam}/>

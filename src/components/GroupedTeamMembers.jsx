@@ -1,10 +1,13 @@
 import React from 'react'
+import { useContext } from 'react'
 
 import { useState } from 'react'
+import { DataContext } from '../Context/DataContext'
 
-export const GroupedTeamMembers = ({employees, selectedTeam, setSelectedTeam}) => {
+export const GroupedTeamMembers = () => {
 
-  
+  const {employees, selectedTeam, setSelectedTeam} = useContext(DataContext)
+
 
   const groupTeamMembers = () =>{
     var teams = []

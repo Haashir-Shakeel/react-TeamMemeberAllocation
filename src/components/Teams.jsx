@@ -1,8 +1,11 @@
 import React from 'react'
+import { useContext } from 'react'
+import { DataContext } from '../Context/DataContext'
 
-const Teams = ({selectedTeam,handleTeamSelectChange}) => {
+const Teams = () => {
+  const {selectedTeam,handleTeamSelectChange} = useContext(DataContext)
   return (
-    <select className='form-select form-select-lg' value={selectedTeam}  onChange={handleTeamSelectChange}>
+    <select id="teams" className='form-select form-select-lg' value={selectedTeam}  onChange={handleTeamSelectChange}>
             <option value="TeamA">TeamA</option>
             <option value="TeamB">TeamB</option>
             <option value="TeamC">TeamC</option>

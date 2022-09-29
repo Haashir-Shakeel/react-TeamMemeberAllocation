@@ -9,17 +9,13 @@ export const Employees = ({employees,selectedTeam,handleEmpoyeeCardClick,handleT
     <main className='container'>
       <div className='row justify-content-center mb-3 mt-3'>
         <div className='col-6'>
-          <Teams selectedTeam={selectedTeam} handleTeamSelectChange={handleTeamSelectChange}/>
+          <Teams />
         </div>
       </div>
       <div className='row justify-content-center mb-3 mt-3'>
         <div className='col-8'>
           <div className='card-collection'>
-
-
-            <TeamMembers employees={employees} selectedTeam={selectedTeam} handleEmpoyeeCardClick={handleEmpoyeeCardClick}/>
-  
-           
+            <TeamMembers />
             </div>
         </div>
       </div>
